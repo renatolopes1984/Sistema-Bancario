@@ -1,0 +1,37 @@
+package negocio;
+
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.Assert;
+import org.junit.Test;
+
+public class GerenciadoraClientesTest_Ex1 {
+
+	@Test
+	public void testPesquisaCliente() {
+		//CRIANDO ALGUNS CLIENTES
+		Cliente cliente01 = new Cliente(1, "Renato Lopes", 40, "renato.lopes1984@gmail.com", 1, true);
+		Cliente cliente02 = new Cliente(2, "Vinicius Castro", 36, "vini@gmail.com", 1, true);
+		
+		//INSERINDO CLIENTES CRIADOS NA LISTA DE CLIENTES DO BANCO:
+		List<Cliente> clientesDoBanco = new ArrayList<>();
+		clientesDoBanco.add(cliente01);
+		clientesDoBanco.add(cliente02);
+		
+		GerenciadoraClientes gerClientes = new GerenciadoraClientes(clientesDoBanco);
+		
+		//INVOCANDO O MÉTODO DE PESQUISA DE CLIENTES
+		Cliente cliente = gerClientes.pesquisaCliente(1);
+		
+		assertThat(cliente.getId(), is(1));
+		assertThat(cliente.getEmail(), is("renato.lopes1984@gmail.com"));
+		Assert.assertEquals(1, cliente.getId());
+		Assert.assertEquals("renato.lopes1984@gmail.com", cliente.getEmail());
+		
+	}
+
+}
